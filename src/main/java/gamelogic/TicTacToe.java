@@ -29,25 +29,27 @@ public class TicTacToe {
 
     private static String[][] updateBoard(String[][] board) {
         System.out.println("Which place you want to put 'X / O' so just Enter the position number from the table ");
-        System.out.println("First Player X");
+        System.out.println("Player X");
         System.out.println("Enter the Row position '0'");
         int firstPlayerRow = input.nextInt();
         System.out.println("Enter the Column position '1'");
         int firstPlayerColumn = input.nextInt();
         board[firstPlayerRow][firstPlayerColumn] = " X ";
         if(winnerChecker(board," X ")){
-            System.out.println("Winner X");
+            board[0][0] = "Winner X";
+            return board;
 
         }
         showBoard(board);
-        System.out.println("Second Player O");
+        System.out.println("Player O");
         System.out.println("Enter the Row position '0'");
         int secondPlayerRow = input.nextInt();
         System.out.println("Enter the Column position '1'");
         int secondPlayerColumn = input.nextInt();
         board[secondPlayerRow][secondPlayerColumn] = " O ";
         if(winnerChecker(board," O ")){
-            System.out.println("winner O");
+            board[0][0] = "Winner O";
+            return board;
         }
         return board;
     }
@@ -78,7 +80,14 @@ public class TicTacToe {
         boolean b = false;
         while (true) {
             showBoard(board);
-            updateBoard(board);
+            String[][] result = updateBoard(board);
+            if(result[0][0].equals("Winner X")){
+                System.out.println(result[0][0]);
+                break;
+            }else if (result[0][0].equals("Winner O")){
+                System.out.println("Winner O");
+                break;
+            }
         }
     }
 }
