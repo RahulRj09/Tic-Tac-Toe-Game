@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
     private static Scanner input = new Scanner(System.in);
-
+    boolean result = false;
     private static String[][] createBoard() {
         String[][] board = new String[][]{
                 {" 00", " 01", " 02"},
@@ -35,6 +35,10 @@ public class TicTacToe {
         System.out.println("Enter the Column position '1'");
         int firstPlayerColumn = input.nextInt();
         board[firstPlayerRow][firstPlayerColumn] = " X ";
+        if(winnerChecker(board," X ")){
+            System.out.println("Winner X");
+
+        }
         showBoard(board);
         System.out.println("Second Player O");
         System.out.println("Enter the Row position '0'");
@@ -42,11 +46,36 @@ public class TicTacToe {
         System.out.println("Enter the Column position '1'");
         int secondPlayerColumn = input.nextInt();
         board[secondPlayerRow][secondPlayerColumn] = " O ";
+        if(winnerChecker(board," O ")){
+            System.out.println("winner O");
+        }
         return board;
+    }
+
+    private static boolean winnerChecker(String[][] board, String a) {
+        if (board[0][0].equals(a) && board[0][1].equals(a) && board[0][2].equals(a)) {
+            return true;
+        } else if (board[1][0].equals(a) && board[1][1].equals(a) && board[1][2].equals(a)) {
+            return true;
+        } else if (board[2][0].equals(a) && board[2][1].equals(a) && board[2][2].equals(a)) {
+            return true;
+        } else if (board[0][0].equals(a) && board[1][1].equals(a) && board[2][2].equals(a)) {
+            return true;
+        } else if (board[0][2].equals(a) && board[1][1].equals(a) && board[2][0].equals(a)) {
+            return true;
+        }else if (board[0][0].equals(a) && board[1][0].equals(a) && board[2][0].equals(a)) {
+            return true;
+        }else if (board[0][1].equals(a) && board[1][1].equals(a) && board[2][1].equals(a)) {
+            return true;
+        }else if (board[0][2].equals(a) && board[1][2].equals(a) && board[2][2].equals(a)) {
+            return true;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
         String[][] board = createBoard();
+        boolean b = false;
         while (true) {
             showBoard(board);
             updateBoard(board);
