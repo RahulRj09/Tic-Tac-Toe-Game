@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
     private static Scanner input = new Scanner(System.in);
-    boolean result = false;
+
     private static String[][] createBoard() {
         String[][] board = new String[][]{
                 {" 00", " 01", " 02"},
@@ -27,7 +27,17 @@ public class TicTacToe {
         System.out.println("\n");
     }
 
-    private static String[][] updateBoard(String[][] board) {
+    private static String[][] updateBoardForO(String[][] board) {
+        System.out.println("Player O");
+        System.out.println("Enter the Row position '0'");
+        int secondPlayerRow = input.nextInt();
+        System.out.println("Enter the Column position '1'");
+        int secondPlayerColumn = input.nextInt();
+        board[secondPlayerRow][secondPlayerColumn] = " O ";
+        return board;
+    }
+
+    private static String[][] updateBoardForX(String[][] board) {
         System.out.println("Which place you want to put 'X / O' so just Enter the position number from the table ");
         System.out.println("Player X");
         System.out.println("Enter the Row position '0'");
@@ -35,22 +45,6 @@ public class TicTacToe {
         System.out.println("Enter the Column position '1'");
         int firstPlayerColumn = input.nextInt();
         board[firstPlayerRow][firstPlayerColumn] = " X ";
-        if(winnerChecker(board," X ")){
-            board[0][0] = "Winner X";
-            return board;
-
-        }
-        showBoard(board);
-        System.out.println("Player O");
-        System.out.println("Enter the Row position '0'");
-        int secondPlayerRow = input.nextInt();
-        System.out.println("Enter the Column position '1'");
-        int secondPlayerColumn = input.nextInt();
-        board[secondPlayerRow][secondPlayerColumn] = " O ";
-        if(winnerChecker(board," O ")){
-            board[0][0] = "Winner O";
-            return board;
-        }
         return board;
     }
 
@@ -65,11 +59,11 @@ public class TicTacToe {
             return true;
         } else if (board[0][2].equals(a) && board[1][1].equals(a) && board[2][0].equals(a)) {
             return true;
-        }else if (board[0][0].equals(a) && board[1][0].equals(a) && board[2][0].equals(a)) {
+        } else if (board[0][0].equals(a) && board[1][0].equals(a) && board[2][0].equals(a)) {
             return true;
-        }else if (board[0][1].equals(a) && board[1][1].equals(a) && board[2][1].equals(a)) {
+        } else if (board[0][1].equals(a) && board[1][1].equals(a) && board[2][1].equals(a)) {
             return true;
-        }else if (board[0][2].equals(a) && board[1][2].equals(a) && board[2][2].equals(a)) {
+        } else if (board[0][2].equals(a) && board[1][2].equals(a) && board[2][2].equals(a)) {
             return true;
         }
         return false;
@@ -77,17 +71,26 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         String[][] board = createBoard();
-        boolean b = false;
+        int count = 0;
         while (true) {
             showBoard(board);
-            String[][] result = updateBoard(board);
-            if(result[0][0].equals("Winner X")){
-                System.out.println(result[0][0]);
-                break;
-            }else if (result[0][0].equals("Winner O")){
-                System.out.println("Winner O");
+            String[][] updatedBoard = updateBoardForX(board);
+            showBoard(updatedBoard);
+            if (winnerChecker(updatedBoard, " X ")) {
+                System.out.println("Winxer X");
                 break;
             }
+            count += 1;
+            if (count == 9) {
+                System.out.println("Game Over");
+                break;
+            }
+            updatedBoard = updateBoardForO(updatedBoard);
+            if (winnerChecker(updatedBoard, " O ")) {
+                System.out.println("Winxer O");
+                break;
+            }
+            count += 1;
         }
     }
 }
