@@ -6,16 +6,15 @@ public class TicTacToe {
     private static Scanner input = new Scanner(System.in);
 
     private static String[][] createBoard() {
-        String[][] board = new String[][]{
+
+        return new String[][]{
                 {" 00", " 01", " 02"},
                 {" 10", " 11", " 12"},
                 {" 20", " 21", " 22"}
         };
-
-        return board;
     }
 
-    public static void showBoard(String[][] board) {
+    private static void showBoard(String[][] board) {
         for (String[] boardData : board) {
             System.out.print("\n");
             for (String boardData1 : boardData) {
