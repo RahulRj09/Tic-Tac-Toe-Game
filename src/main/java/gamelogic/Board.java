@@ -1,9 +1,9 @@
 package gamelogic;
 
 public class Board {
-    private String[][] board;
+    public String[][] board;
 
-    private Board() {
+    Board() {
         this.board = new String[][]{
                 {" 00", " 01", " 02"},
                 {" 10", " 11", " 12"},
@@ -11,7 +11,7 @@ public class Board {
         };
     }
 
-    private void showBoard() {
+    void showBoard() {
         for (String[] row : board) {
             System.out.print("\n");
             for (String column : row) {
@@ -23,17 +23,8 @@ public class Board {
         System.out.println("\n");
     }
 
-    private void updateBoard(int row, int column, String userInput) {
-        board[row][column] = userInput;
+    void updateBoard(Position position, String userInput) {
+        board[position.row][position.column] = userInput;
     }
 
-    public static void main(String[] args) {
-        Board demo = new Board();
-        demo.showBoard();
-        demo.updateBoard(0, 0, " X ");
-        demo.showBoard();
-        demo.updateBoard(1, 1, " O ");
-        demo.showBoard();
-
-    }
 }
