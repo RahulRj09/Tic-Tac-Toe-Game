@@ -11,16 +11,18 @@ public class Board {
         };
     }
 
-    void showBoard() {
-        for (String[] row : board) {
-            System.out.print("\n");
+    String showBoard() {
+        String newBoard = "";
+        for (String[] row : this.board) {
+            newBoard += "\n";
             for (String column : row) {
-                System.out.print(column + "|");
+                newBoard += column + "|";
             }
-            System.out.print("\n");
-            System.out.print("___|___|___|");
+            newBoard += "\n";
+            newBoard += "___|___|___|";
         }
-        System.out.println("\n");
+        newBoard += "\n";
+        return newBoard;
     }
 
     void updateBoard(Position position, String userInput) {

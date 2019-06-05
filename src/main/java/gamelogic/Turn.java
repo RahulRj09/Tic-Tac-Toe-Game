@@ -6,9 +6,9 @@ public class Turn {
 
     String changeTurn() {
         if (count % 2 == 0) {
-            this.symbol = " O ";
-        } else {
             this.symbol = " X ";
+        } else {
+            this.symbol = " O ";
         }
         count++;
         return symbol;

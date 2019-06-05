@@ -10,19 +10,19 @@ public class Game {
         if (board.board[0][0].equals(symbol) && board.board[0][1].equals(symbol) && board.board[0][2].equals(symbol)) {
             return "Win" + symbol;
         } else if (board.board[1][0].equals(symbol) && board.board[1][1].equals(symbol) && board.board[1][2].equals(symbol)) {
-            return "Win" + symbol;
+            return "Win Player " + symbol;
         } else if (board.board[2][0].equals(symbol) && board.board[2][1].equals(symbol) && board.board[2][2].equals(symbol)) {
-            return "Win" + symbol;
+            return "Win Player " + symbol;
         } else if (board.board[0][0].equals(symbol) && board.board[1][0].equals(symbol) && board.board[2][0].equals(symbol)) {
-            return "Win" + symbol;
+            return "Win Player " + symbol;
         } else if (board.board[0][1].equals(symbol) && board.board[1][1].equals(symbol) && board.board[2][1].equals(symbol)) {
-            return "Win" + symbol;
+            return "Win Player " + symbol;
         } else if (board.board[0][2].equals(symbol) && board.board[1][2].equals(symbol) && board.board[2][2].equals(symbol)) {
-            return "Win" + symbol;
+            return "Win Player " + symbol;
         } else if (board.board[0][0].equals(symbol) && board.board[1][1].equals(symbol) && board.board[2][2].equals(symbol)) {
-            return "Win" + symbol;
+            return "Win Player " + symbol;
         } else if (board.board[0][2].equals(symbol) && board.board[1][1].equals(symbol) && board.board[2][0].equals(symbol)) {
-            return "Win" + symbol;
+            return "Win Player " + symbol;
         }
         return null;
     }
@@ -42,8 +42,8 @@ public class Game {
         board.updateBoard(position, turn.changeTurn());
     }
 
-    void display() {
-        board.showBoard();
+    String display() {
+        return board.showBoard();
     }
 
 }

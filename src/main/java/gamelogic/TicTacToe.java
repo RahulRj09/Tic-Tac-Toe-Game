@@ -17,11 +17,11 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.display();
+        System.out.println(game.display());
         while (game.isRunning()) {
             System.out.println("Player turn");
             game.playGame(getPosition());
-            game.display();
+            System.out.println(game.display());
         }
         if (game.winnerChecker() == null) {
             System.out.println("Game Over");
